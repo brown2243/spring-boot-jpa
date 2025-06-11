@@ -16,11 +16,26 @@
 
 ### 라이브러리 살펴보기
 
+- `./gradlew dependencies`: 의존관계 설명
+
 ### View 환경 설정
+
+- `thymeleaf`를 spring에서 밀어줌 + 사용법을 약간 익혀야한다
 
 ### H2 데이터베이스 설치
 
 ### JPA와 DB 설정, 동작확인
+
+- show_sql속성은 system out을 통해 출력하기에 logging으로 출력 하는게 권장된다.
+- `@PersistenceContext`: 부트가 엔티티매니저 객체 주입
+- save하고 멤버 대신 id를 반환하는건 커맨드와 쿼리를 분리해라를 따르는 것
+  - 명령과 조회의 분리
+  - Command 데이터를 변경하는 작업 (예: save(), delete(), update())
+  - Query 데이터를 조회하는 작업 (예: findById(), getUser())
+- 인텔리제이에 테스트 코드를 생성해주는 기능이 있는 것 같은데 `Symflower` 익스텐션으로 대체
+- `@Transactional`는 spring 껄 import할 것
+- 왠만한 라이브러리들은 스프링부트에서는 해당 부트버전에 적합한 버전이 이미 정해져있음 그래서 라이브러리 버전을 명시하지 않아도 그 버전을 사용
+- `p6spy-spring-boot-starter`는 파라미터까지 sql에 넣어보여줘 좋지만 운영 배포까지는 성능적 문제로 고민 필요
 
 ## 3. 도메인 분석 설계
 
