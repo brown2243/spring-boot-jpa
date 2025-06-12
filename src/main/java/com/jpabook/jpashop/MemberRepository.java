@@ -3,6 +3,8 @@ package com.jpabook.jpashop;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jpabook.jpashop.domain.Member;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 

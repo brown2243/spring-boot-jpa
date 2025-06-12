@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jpabook.jpashop.domain.Member;
+
 @SpringBootTest
 @Transactional
 // @RunWith(SpringRunner.class) junit 4
