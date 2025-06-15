@@ -1,5 +1,9 @@
 package com.jpabook.jpashop.domain.item;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale.Category;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,5 +28,7 @@ public abstract class Item {
   private String name;
   private int price;
   private int stockQuantity;
+
+  private List<Category> categories = new ArrayList<>();
 
 }

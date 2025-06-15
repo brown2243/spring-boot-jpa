@@ -8,7 +8,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +21,7 @@ public class Delivery {
   @Column(name = "delivery_id")
   private Long id;
 
-  @OneToOne
-  @OneToMany(mappedBy = "delivery")
+  @OneToOne(mappedBy = "delivery")
   private Order order;
 
   @Embedded
