@@ -1,4 +1,6 @@
-package com.jpabook.jpashop;
+package com.jpabook.jpashop.repository;
+
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,5 +25,16 @@ public class MemberRepository {
   @Transactional(readOnly = true)
   public Member find(Long id) {
     return em.find(Member.class, id);
+  }
+
+  @Transactional(readOnly = true)
+  public List<Member> findAll() {
+    return em.createQuery("select m from Member m", Member.class).getResultList();
+  }
+
+  @Transactional(readOnly = true)
+  public List<Member> findByName(String name) {
+    return em.createQuery("select m from Member m where name = :name", Member.class).setParameter("name", name)
+        .getResultList();
   }
 }
