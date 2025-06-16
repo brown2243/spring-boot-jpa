@@ -1,4 +1,4 @@
-package com.jpabook.jpashop;
+package com.jpabook.jpashop.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
