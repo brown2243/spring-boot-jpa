@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
 
+import com.jpabook.jpashop.exception.NotEnoughStockException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,5 +32,17 @@ public abstract class Item {
   private int stockQuantity;
 
   private List<Category> categories = new ArrayList<>();
+
+  public void addStock(int quantity) {
+    this.stockQuantity += quantity;
+  }
+
+  public void removeStock(int quantity) {
+    int rest = this.stockQuantity - quantity;
+    if (rest < 0) {
+      throw new NotEnoughStockException("need more stock");
+    }
+    this.stockQuantity = rest;
+  }
 
 }
