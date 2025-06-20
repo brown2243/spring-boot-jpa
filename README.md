@@ -203,6 +203,12 @@ protected OrderItem() {}
 
 ### 주문 검색 기능 개발
 
+- JPA에서 동적쿼리를 어떻게 해결하나
+- JPA Criteria는 JPA 표준 스펙이지만 실무에서 사용하기에 너무 복잡하다.
+- queryDSL 써라
+- 스트링 형식의 SQL 보다 자바코드로 작성하면 컴파일 시점에 잘못 쓴걸 알 수 있다.
+- boot + spring data JPA + queryDSL는 프로젝트 필수적으로 챙긴다 하심
+
 ## 8. 웹 계층 개발
 
 ### 홈 화면과 레이아웃

@@ -1,24 +1,23 @@
 package com.jpabook.jpashop.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.jpabook.jpashop.domain.Address;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.domain.Order;
 import com.jpabook.jpashop.domain.OrderStatus;
-import com.jpabook.jpashop.domain.item.Album;
 import com.jpabook.jpashop.domain.item.Book;
 import com.jpabook.jpashop.domain.item.Item;
 import com.jpabook.jpashop.exception.NotEnoughStockException;
-import com.jpabook.jpashop.repository.ItemRepository;
-import com.jpabook.jpashop.repository.MemberRepository;
 import com.jpabook.jpashop.repository.OrderRepository;
 
 import jakarta.persistence.EntityManager;
-
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
@@ -30,12 +29,6 @@ public class OrderServiceTest {
 
 	@Autowired
 	private OrderRepository orderRepository;
-
-	@Autowired
-	private MemberRepository memberRepository;
-
-	@Autowired
-	private ItemRepository itemRepository;
 
 	@Test
 	public void 상품주문() {
