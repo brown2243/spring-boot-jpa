@@ -15,6 +15,8 @@ import com.jpabook.jpashop.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
@@ -41,7 +43,12 @@ public class MemberController {
     memberService.join(member);
 
     return "redirect:/";
+  }
 
+  @GetMapping("/members")
+  public String list(Model model) {
+    model.addAttribute("members", memberService.findMembers());
+    return "members/memberList";
   }
 
 }

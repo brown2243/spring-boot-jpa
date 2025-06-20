@@ -1,5 +1,9 @@
 # [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/dashboard)
 
+## 후기
+
+- 빌더 패턴
+
 ## 2. 프로젝트 환경설정
 
 ### 프로젝트 생성
@@ -219,10 +223,17 @@ protected OrderItem() {}
 ### 회원 등록
 
 - DTO와 엔티티는 분리
+- 실무에서 엔티티는 핵심 비즈니스 로직만 가지고 있고, 화면을 위한 로직은 없어야 한다.
 
 ### 회원 목록 조회
 
+- **API를 만들때는 절대 엔티티를 반환하지 마라**
+  - API는 spec인데, 엔티티 변경 시 api spec이 변함
+
 ### 상품 등록
+
+- 영상에서는 html form th:object의 변수명이 model attributeName과 다르면 에디터에서 띄워주는데 vscode는 그정도의 지원은 하지 않는다
+  - html의 문자열은 그냥 문자열
 
 ### 상품 목록
 
