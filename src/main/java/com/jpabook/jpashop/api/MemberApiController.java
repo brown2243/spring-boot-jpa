@@ -1,6 +1,8 @@
 package com.jpabook.jpashop.api;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +11,7 @@ import com.jpabook.jpashop.service.MemberService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -24,15 +27,26 @@ public class MemberApiController {
   }
 
   @PostMapping("/api/v2/members")
-  public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberDto memberDto) {
+  public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
     Member member = new Member();
-    member.setName(memberDto.getName());
+    member.setName(request.getName());
     Long id = memberService.join(member);
     return new CreateMemberResponse(id);
   }
 
+  @PutMapping("/api/v2/members/{id}")
+  public UpdateMemberResponse updateMemberV2(
+      @PathVariable("id") Long id,
+      @RequestBody @Valid UpdateMemberRequest request) {
+
+    String name = request.getName();
+    memberService.update(id, name);
+
+    return new UpdateMemberResponse(id, name);
+  }
+
   @Data
-  static class CreateMemberDto {
+  static class CreateMemberRequest {
     @NotEmpty
     private String name;
   }
@@ -46,4 +60,16 @@ public class MemberApiController {
     }
   }
 
+  @Data
+  static class UpdateMemberRequest {
+    @NotEmpty
+    private String name;
+  }
+
+  @Data
+  @AllArgsConstructor
+  static class UpdateMemberResponse {
+    private Long id;
+    private String name;
+  }
 }

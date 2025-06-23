@@ -39,4 +39,11 @@ public class MemberService {
       throw new IllegalStateException("존재하는 회원 입니다.");
     }
   }
+
+  @Transactional
+  public Long update(Long id, String name) {
+    memberRepository.find(id).setName(name);
+    return id;
+  }
+
 }
