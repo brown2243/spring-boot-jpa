@@ -1,9 +1,5 @@
 # [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/dashboard)
 
-## 후기
-
-- 빌더 패턴
-
 ## 2. 프로젝트 환경설정
 
 ### 프로젝트 생성
@@ -277,4 +273,12 @@ protected OrderItem() {}
 
 ### 주문 목록 검색, 취소
 
-### 다음으로
+| 어노테이션        | 전송 방식                      | 역할                     | 대상 예시                                       |
+| ----------------- | ------------------------------ | ------------------------ | ----------------------------------------------- |
+| `@RequestParam`   | Form, Query String             | 단일 파라미터 받기       | `/members?id=1`                                 |
+| `@ModelAttribute` | Form (`x-www-form-urlencoded`) | 객체에 바인딩 (Form DTO) | `<form name="user.name" ...>`                   |
+| `@RequestBody`    | JSON API                       | JSON → 객체 바인딩       | `fetch('/api', { body: JSON.stringify(user) })` |
+
+## 후기
+
+해당 강의를 완강하는데, 기존에 생각했던 일정보다 더 걸린 점이 아쉽다.
