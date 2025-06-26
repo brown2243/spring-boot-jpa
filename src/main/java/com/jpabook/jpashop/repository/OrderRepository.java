@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import com.jpabook.jpashop.api.OrderSimpleApiController;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.domain.Order;
+import com.jpabook.jpashop.dto.SimpleOrderDto;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -57,6 +59,23 @@ public class OrderRepository {
     // 최대 1000건
     TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
     return query.getResultList();
+  }
+
+  public List<Order> findAllWithMemberDelivery() {
+    return em.createQuery("""
+          select o from Order o
+          join fetch o.member m
+          join fetch o.delivery d
+        """, Order.class).getResultList();
+  }
+
+  public List<SimpleOrderDto> findAllByDto() {
+    return em.createQuery("""
+          select new com.jpabook.jpashop.dto.SimpleOrderDto(o.id, m.name, o.orderDate,o.status, d.address)
+          from Order o
+          join o.member m
+          join o.delivery d
+        """, SimpleOrderDto.class).getResultList();
   }
 
   // public List<Order> findAll(OrderSearch orderSearch) {
