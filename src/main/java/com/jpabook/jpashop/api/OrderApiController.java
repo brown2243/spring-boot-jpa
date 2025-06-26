@@ -45,10 +45,10 @@ public class OrderApiController {
   }
 
   @GetMapping("/api/v3/orders")
-  public List<SimpleOrderDto> ordersV3() {
-    return orderRepository.findAllWithMemberDelivery()
+  public List<OrderDto> ordersV3() {
+    return orderRepository.findAllWithItem()
         .stream()
-        .map(o -> new SimpleOrderDto(o))
+        .map(o -> new OrderDto(o))
         .toList();
   }
 
