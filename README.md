@@ -431,6 +431,10 @@ protected OrderItem() {}
 
 ### 주문 조회 V5: JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화
 
+- 분리해서 in query로 최적화
+- Query: 루트 1번, 컬렉션 1번
+- ToOne 관계들을 먼저 조회하고, 여기서 얻은 식별자 orderId로 ToMany 관계인 OrderItem 을 한꺼번에 조회
+
 ### 주문 조회 V6: JPA에서 DTO로 직접 조회, 플랫 데이터 최적화
 
 ### API 개발 고급 정리
