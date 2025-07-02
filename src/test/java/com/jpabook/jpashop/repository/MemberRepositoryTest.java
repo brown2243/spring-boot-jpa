@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jpabook.jpashop.domain.Member;
-import com.jpabook.jpashop.repository.MemberRepository;
 
 @SpringBootTest
 @Transactional
@@ -16,7 +15,7 @@ import com.jpabook.jpashop.repository.MemberRepository;
 // @ExtendWith(SpringExtension.class) 위와 동일 - 불필요
 public class MemberRepositoryTest {
 	@Autowired
-	private MemberRepository memberRepository;
+	private MemberRepositoryOld memberRepository;
 
 	@Test
 	// @Rollback(false)

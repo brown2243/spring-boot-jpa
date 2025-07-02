@@ -44,7 +44,7 @@ public class OrderServiceTest {
 		int orderCount = 5;
 
 		// when
-		Long id = orderService.Order(member.getId(), item.getId(), orderCount);
+		Long id = orderService.order(member.getId(), item.getId(), orderCount);
 
 		// then
 		Order order = orderRepository.find(id);
@@ -68,7 +68,7 @@ public class OrderServiceTest {
 		int orderCount = 15;
 
 		assertThrows(NotEnoughStockException.class,
-				() -> orderService.Order(member.getId(), item.getId(), orderCount), "재고 수량이 부족합니다.");
+				() -> orderService.order(member.getId(), item.getId(), orderCount), "재고 수량이 부족합니다.");
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class OrderServiceTest {
 		em.persist(item);
 
 		int orderCount = 5;
-		Long id = orderService.Order(member.getId(), item.getId(), orderCount);
+		Long id = orderService.order(member.getId(), item.getId(), orderCount);
 		// when
 		orderService.cancelOrder(id);
 

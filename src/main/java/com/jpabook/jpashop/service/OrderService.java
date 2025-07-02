@@ -11,7 +11,7 @@ import com.jpabook.jpashop.domain.Order;
 import com.jpabook.jpashop.domain.OrderItem;
 import com.jpabook.jpashop.domain.item.Item;
 import com.jpabook.jpashop.repository.ItemRepository;
-import com.jpabook.jpashop.repository.MemberRepository;
+import com.jpabook.jpashop.repository.MemberRepositoryOld;
 import com.jpabook.jpashop.repository.OrderRepository;
 import com.jpabook.jpashop.repository.OrderSearch;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderService {
 
   private final OrderRepository orderRepository;
-  private final MemberRepository memberRepository;
+  private final MemberRepositoryOld memberRepository;
   private final ItemRepository itemRepository;
 
   // 주문

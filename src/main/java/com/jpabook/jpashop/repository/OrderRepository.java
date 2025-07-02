@@ -6,10 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import com.jpabook.jpashop.api.OrderSimpleApiController;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.domain.Order;
+import com.jpabook.jpashop.domain.OrderStatus;
+import com.jpabook.jpashop.domain.QMember;
+import com.jpabook.jpashop.domain.QOrder;
 import com.jpabook.jpashop.dto.SimpleOrderDto;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -27,6 +31,7 @@ public class OrderRepository {
 
   // 일관성 있는 사용
   private final EntityManager em;
+  private final JPAQueryFactory queryFactory;
 
   public Long save(Order order) {
     em.persist(order);
@@ -59,6 +64,20 @@ public class OrderRepository {
     // 최대 1000건
     TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
     return query.getResultList();
+  }
+
+  public List<Order> findAllByQueryDsl(OrderSearch orderSearch) {
+    QOrder order = QOrder.order;
+    QMember member = QMember.member;
+
+    List<Order> orders = queryFactory.select(order)
+        .from(order)
+        .join(order.member, member)
+        .where(statusEq(orderSearch.getOrderStatus()), member.name.like(orderSearch.getMemberName()))
+        .limit(1000)
+        .fetch();
+
+    return orders;
   }
 
   public List<Order> findAllWithMemberDelivery() {
@@ -99,6 +118,12 @@ public class OrderRepository {
         """, SimpleOrderDto.class).getResultList();
   }
 
+  private BooleanExpression statusEq(OrderStatus status) {
+    if (status == null) {
+      return null;
+    }
+    return QOrder.order.status.eq(status);
+  }
   // public List<Order> findAll(OrderSearch orderSearch) {
   // return em.createQuery(
   // """
